@@ -4,6 +4,7 @@ import directory.model.Person;
 import directory.model.PersonWrappper;
 import directory.view.PersonDialogControl;
 import directory.view.PersonOverviewControl;
+import directory.view.RootLayoutControl;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,14 +69,29 @@ public class MainApp extends Application {
 
     public void initRootLayout(){
         try {
-            FXMLLoader load=new FXMLLoader();
-            load.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
-            rootLayout= (BorderPane) load.load();
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class
+                    .getResource("view/RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+
+            // Give the controller access to the main app.
+            RootLayoutControl controller = loader.getController();
+            controller.setMainApp(this);
+
             primaryStage.show();
-        }catch(IOException ex){
-            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Try to load last opened person file.
+        File file = getPersonPath();
+        if (file != null) {
+            loadDataFromFile(file);
         }
     }
 

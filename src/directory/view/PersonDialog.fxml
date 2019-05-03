@@ -38,7 +38,7 @@
             <TextField fx:id="streetField" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="cityField" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="postalCodeField" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <DatePicker fx:id="birthdayField" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <DatePicker fx:id="birthdayField" maxWidth="1.7976931348623157E308" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <HBox layoutX="319.0" layoutY="211.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">

@@ -62,4 +62,9 @@ public class RootLayoutControl {
         }
     }
 
+    @FXML
+    private void handleExit(){
+        System.exit(0);
+    }
+
 }
