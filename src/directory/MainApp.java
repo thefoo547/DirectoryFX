@@ -1,6 +1,7 @@
 package directory;
 
 import directory.model.Person;
+import directory.model.PersonWrappper;
 import directory.view.PersonDialogControl;
 import directory.view.PersonOverviewControl;
 import javafx.application.Application;
@@ -8,13 +9,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 public class MainApp extends Application {
 
@@ -126,6 +133,65 @@ public class MainApp extends Application {
             e.printStackTrace();
             return false;
         }
+    }
+    //file preferences
+    public File getPersonPath(){
+        Preferences pr=Preferences.userNodeForPackage(MainApp.class);
+        String path=pr.get("path", null);
+        if(path != null){
+            return new File(path);
+        }else{
+            return null;
+        }
+    }
+
+    public void setPersonFilePath(File file) {
+        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+        if (file != null) {
+            prefs.put("filePath", file.getPath());
+
+            // Update the stage title.
+            primaryStage.setTitle("AddressApp - " + file.getName());
+        } else {
+            prefs.remove("filePath");
+
+            // Update the stage title.
+            primaryStage.setTitle("AddressApp");
+        }
+    }
+
+    public void loadDataFromFile(File f){
+        try{
+            JAXBContext context=JAXBContext.newInstance(PersonWrappper.class);
+            Unmarshaller um=context.createUnmarshaller();
+            PersonWrappper pw=(PersonWrappper) um.unmarshal(f);
+            personData.clear();
+            personData.addAll(pw.getPeople());
+            setPersonFilePath(f);
+        }catch (Exception e){
+            msgerr(e.getMessage());
+        }
+    }
+
+    public void saveDataToFile(File f){
+        try{
+            JAXBContext context=JAXBContext.newInstance(PersonWrappper.class);
+            Marshaller m=context.createMarshaller();
+            PersonWrappper pw=new PersonWrappper();
+            pw.setPeople(personData);
+            m.marshal(pw,f);
+            setPersonFilePath(f);
+        }catch (Exception e){
+            msgerr(e.getMessage());
+        }
+    }
+
+    private void msgerr(String msg){
+        Alert al=new Alert(Alert.AlertType.ERROR);
+        al.setTitle("DirectoryFX");
+        al.setHeaderText("ERROR");
+        al.setContentText(msg);
+        al.showAndWait();
     }
 
     public Stage getPrimaryStage(){
