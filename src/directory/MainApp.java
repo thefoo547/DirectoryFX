@@ -152,7 +152,7 @@ public class MainApp extends Application {
     }
     //file preferences
     public File getPersonPath(){
-        Preferences pr=Preferences.userNodeForPackage(MainApp.class);
+        Preferences pr = Preferences.userRoot().node(this.getClass().getName());
         String path=pr.get("path", null);
         if(path != null){
             return new File(path);
@@ -162,7 +162,7 @@ public class MainApp extends Application {
     }
 
     public void setPersonFilePath(File file) {
-        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
+        Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
         if (file != null) {
             prefs.put("filePath", file.getPath());
 
