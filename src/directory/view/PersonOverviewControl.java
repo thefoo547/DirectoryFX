@@ -61,11 +61,7 @@ public class PersonOverviewControl {
     private void handleDelete(){
         int selectedIndex=personTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex<0){
-            Alert al=new Alert(Alert.AlertType.ERROR);
-            al.setTitle("DirectoryFX");
-            al.setHeaderText("ERROR");
-            al.setContentText("Please select a person from the table");
-            al.showAndWait();
+            msgerr("Select a person from the table");
             return;
         }
 
@@ -90,6 +86,14 @@ public class PersonOverviewControl {
             cityLabel.setText("");
             birthdayLabel.setText("");
         }
+    }
+
+    private void msgerr(String msg){
+        Alert al=new Alert(Alert.AlertType.ERROR);
+        al.setTitle("DirectoryFX");
+        al.setHeaderText("ERROR");
+        al.setContentText(msg);
+        al.showAndWait();
     }
 
     /**

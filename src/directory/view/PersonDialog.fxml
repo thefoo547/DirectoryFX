@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="directory.view.PersonDialogControl">
    <children>
       <GridPane layoutX="200.0" layoutY="68.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <columnConstraints>
@@ -28,18 +27,18 @@
         </rowConstraints>
          <children>
             <Label text="First Name" />
-            <Label text="Second Name" GridPane.rowIndex="1" />
+            <Label text="Last Name" GridPane.rowIndex="1" />
             <Label text="Street" GridPane.rowIndex="2" />
             <Label text="City" GridPane.rowIndex="3" />
             <Label text="Postal Code" GridPane.rowIndex="4" />
             <Label text="Birthday" GridPane.rowIndex="5" />
             <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <DatePicker maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="260.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
+            <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <DatePicker fx:id="birthdayField" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="260.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <HBox layoutX="319.0" layoutY="211.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">

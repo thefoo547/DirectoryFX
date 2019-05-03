@@ -18,4 +18,8 @@ public class dateholding {
     public static LocalDate parse (String t) throws DateTimeParseException {
         return dtf.parse(t, LocalDate::from);
     }
+    public static boolean validDate(String dateString) {
+        // Try to parse the String.
+        return dateholding.parse(dateString) != null;
+    }
 }
