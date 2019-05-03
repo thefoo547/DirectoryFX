@@ -88,6 +88,30 @@ public class PersonOverviewControl {
         }
     }
 
+    @FXML
+    private void handleNewPerson() {
+        Person tempPerson = new Person();
+        boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+        if (okClicked) {
+            mainApp.getPersonData().add(tempPerson);
+        }
+    }
+
+    @FXML
+    private void handleEditPerson() {
+        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+            if (okClicked) {
+                showPersonDetails(selectedPerson);
+            }
+
+        } else {
+            // Nothing selected.
+            msgerr("Please select a person from the table");
+        }
+    }
+
     private void msgerr(String msg){
         Alert al=new Alert(Alert.AlertType.ERROR);
         al.setTitle("DirectoryFX");

@@ -8,6 +8,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 public class PersonDialogControl {
 
     @FXML
@@ -137,6 +139,10 @@ public class PersonDialogControl {
                 errorMessage += "No valid birthday. Use the format dd.mm.yyyy!\n";
             }
         }*/
+
+        if(birthdayField.getValue().isAfter(LocalDate.now())){
+            errorMessage += "No valid birthday\n";
+        }
 
         if (errorMessage.length() == 0) {
             return true;

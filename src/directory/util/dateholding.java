@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class dateholding {
-    private static final String DATE_FORMAT="dd.MM.yy";
+    private static final String DATE_FORMAT="dd/MM/yy";
     private static final DateTimeFormatter dtf=DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     public static String format(LocalDate t){
