@@ -63,6 +63,11 @@ public class RootLayoutControl {
     }
 
     @FXML
+    private void handleStatics(){
+        mainApp.showPersonStatics();
+    }
+
+    @FXML
     private void handleExit(){
         System.exit(0);
     }

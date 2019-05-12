@@ -4,6 +4,7 @@ import directory.model.Person;
 import directory.model.PersonWrappper;
 import directory.view.PersonDialogControl;
 import directory.view.PersonOverviewControl;
+import directory.view.PersonStaticsControl;
 import directory.view.RootLayoutControl;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -199,6 +200,27 @@ public class MainApp extends Application {
             setPersonFilePath(f);
         }catch (Exception e){
             msgerr(e.getMessage());
+        }
+    }
+
+    public void showPersonStatics(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/PersonStatics.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Statics");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene sc = new Scene(page);
+            dialogStage.setScene(sc);
+            //set birthday statics
+            PersonStaticsControl control=loader.getController();
+            control.setPersonData(personData);
+            dialogStage.show();
+        }catch (IOException ex){
+            msgerr(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
