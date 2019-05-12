@@ -6,6 +6,7 @@ import directory.view.PersonDialogControl;
 import directory.view.PersonOverviewControl;
 import directory.view.PersonStaticsControl;
 import directory.view.RootLayoutControl;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
