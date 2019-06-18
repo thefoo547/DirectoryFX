@@ -3,6 +3,7 @@ package directory.view;
 import java.lang.management.MonitorInfo;
 import java.text.DateFormatSymbols;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -56,7 +57,6 @@ public class PersonStaticsControl {
             int month = p.getBirthday().getMonthValue() - 1;
             monthCounter[month]++;
         }
-
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         // Create a XYChart.Data object for each month. Add it to the series.
